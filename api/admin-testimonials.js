@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 
   const { data, error } = await supabase
     .from('testimonials')
-    .select('id, brand, reviewer, message, created_at')
+    .select('id, brand, reviewer, message, celebration_type, created_at')
     .order('created_at', { ascending: false })
 
   if (error) {
