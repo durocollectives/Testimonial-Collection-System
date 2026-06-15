@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
   // Verify the admin password from the request header
   const incomingPassword = req.headers['x-admin-password']
-  const expectedPassword = process.env.VITE_ADMIN_PASSWORD
+  const expectedPassword = process.env.ADMIN_PASSWORD || process.env.VITE_ADMIN_PASSWORD
 
   if (!incomingPassword || !expectedPassword || incomingPassword !== expectedPassword) {
     console.error('Auth check failed:', {
