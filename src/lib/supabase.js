@@ -10,12 +10,15 @@ export const supabase =
     ? createClient(supabaseUrl, supabaseAnonKey)
     : null
 
-export async function insertTestimonial({ brand, reviewer, message }) {
+export async function insertTestimonial({ brand, reviewer, message, celebration_type }) {
   if (!supabase) throw new Error('Database not configured. Please contact the site owner.')
+
+  const row = { brand, reviewer, message }
+  if (celebration_type) row.celebration_type = celebration_type
 
   const { error } = await supabase
     .from('testimonials')
-    .insert({ brand, reviewer, message })
+    .insert(row)
 
   if (error) throw error
 }
