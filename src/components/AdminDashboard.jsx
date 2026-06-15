@@ -108,7 +108,7 @@ export default function AdminDashboard({ onLogout }) {
         {!loading && !error && filtered.length > 0 && (
           <div className="bg-white border border-edge rounded-card shadow-card overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[560px]">
+              <table className="w-full min-w-[600px]">
                 <thead>
                   <tr className="border-b border-edge">
                     <th className="text-left px-6 py-4 text-label font-semibold text-ink w-32 whitespace-nowrap">
@@ -119,6 +119,9 @@ export default function AdminDashboard({ onLogout }) {
                     </th>
                     <th className="text-left px-6 py-4 text-label font-semibold text-ink w-36">
                       Name
+                    </th>
+                    <th className="text-left px-6 py-4 text-label font-semibold text-ink w-40">
+                      Celebration
                     </th>
                     <th className="text-left px-6 py-4 text-label font-semibold text-ink">
                       Message
@@ -139,6 +142,9 @@ export default function AdminDashboard({ onLogout }) {
                       </td>
                       <td className="px-6 py-4 text-[0.8125rem] text-ink whitespace-nowrap">
                         {t.reviewer}
+                      </td>
+                      <td className="px-6 py-4 text-[0.8125rem] text-mid whitespace-nowrap">
+                        {t.celebration_type || <span className="text-muted">—</span>}
                       </td>
                       <td className="px-6 py-4 text-[0.8125rem] text-ink leading-relaxed max-w-xs">
                         {t.message}
