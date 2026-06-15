@@ -8,16 +8,28 @@ const INPUT_CLASS =
 export default function AdminLogin({ onLogin }) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD
+    setLoading(true)
+    setError(false)
 
-    if (password === adminPassword) {
-      sessionStorage.setItem('admin-auth', password)
-      onLogin()
-    } else {
+    try {
+      const response = await fetch('/api/admin-testimonials', {
+        headers: { 'x-admin-password': password },
+      })
+
+      if (response.ok) {
+        sessionStorage.setItem('admin-auth', password)
+        onLogin()
+      } else {
+        setError(true)
+      }
+    } catch {
       setError(true)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -62,10 +74,10 @@ export default function AdminLogin({ onLogin }) {
 
             <button
               type="submit"
-              disabled={!password}
+              disabled={!password || loading}
               className="w-full bg-forest text-white font-semibold py-3 rounded-input cursor-pointer hover:bg-forest-dark transition-colors duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              Enter
+              {loading ? 'Checking…' : 'Enter'}
             </button>
           </form>
         </div>
