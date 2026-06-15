@@ -9,11 +9,16 @@ export default async function handler(req, res) {
   const incomingPassword = req.headers['x-admin-password']
   const expectedPassword = process.env.VITE_ADMIN_PASSWORD
 
-  if (!incomingPassword || !expectedPassword || incomingPassword !== expectedPassword) {
+  const incoming = (incomingPassword || '').trim()
+  const expected = (expectedPassword || '').trim()
+
+  if (!incoming || !expected || incoming !== expected) {
     console.error('Auth check failed:', {
-      hasIncoming: Boolean(incomingPassword),
-      hasExpected: Boolean(expectedPassword),
-      match: incomingPassword === expectedPassword,
+      hasIncoming: Boolean(incoming),
+      hasExpected: Boolean(expected),
+      incomingLen: incoming.length,
+      expectedLen: expected.length,
+      match: incoming === expected,
     })
     return res.status(401).json({ error: 'Unauthorized' })
   }
