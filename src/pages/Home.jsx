@@ -32,9 +32,9 @@ export default function Home() {
 
       {/* ── Hero: heading + photo ── */}
       <div className="max-w-5xl mx-auto px-6 sm:px-12 pt-10 pb-14 sm:pb-16">
-        <div className="flex items-start gap-10 sm:gap-16">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:gap-16">
 
-          {/* Left: copy */}
+          {/* Copy */}
           <div className="flex-1 min-w-0 pt-1">
             <p className="text-[0.6875rem] font-semibold text-gold uppercase tracking-[0.22em] mb-6">
               Testimonials
@@ -49,12 +49,12 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Right: Tobi's photo — editorial, not hero */}
-          <div className="hidden sm:block w-[188px] flex-shrink-0 self-start mt-2">
+          {/* Tobi's photo */}
+          <div className="mt-8 sm:mt-2 sm:w-[188px] sm:flex-shrink-0 sm:self-start">
             <img
               src="/tobi.webp"
               alt="Tobi Yusuf speaking at an event"
-              className="w-full h-[264px] object-cover rounded-2xl"
+              className="w-full h-[240px] sm:h-[264px] object-cover rounded-2xl"
               style={{ objectPosition: '50% 6%' }}
               draggable={false}
             />
