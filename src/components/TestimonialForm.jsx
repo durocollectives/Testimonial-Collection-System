@@ -3,7 +3,7 @@ import { insertTestimonial } from '../lib/supabase'
 import { sendNotification } from '../lib/email'
 
 const INPUT_BASE =
-  'w-full bg-white border border-edge rounded-input px-4 py-3 text-body text-ink ' +
+  'w-full bg-white border border-edge rounded-input px-4 py-3 text-[0.9rem] text-ink ' +
   'placeholder:text-muted focus:outline-none focus:border-forest ' +
   'focus:ring-2 focus:ring-forest/10 transition-colors duration-150'
 
@@ -13,7 +13,8 @@ export default function TestimonialForm({ brand, onSuccess }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const canSubmit = Boolean(brand) && name.trim().length > 0 && message.trim().length > 0 && !loading
+  const canSubmit =
+    Boolean(brand) && name.trim().length > 0 && message.trim().length > 0 && !loading
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -34,22 +35,20 @@ export default function TestimonialForm({ brand, onSuccess }) {
       return
     }
 
-    // Non-blocking — notification failure must not prevent success state
     sendNotification({ brand, reviewer: name.trim(), message: message.trim() })
-
     setLoading(false)
     onSuccess()
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      noValidate
-      className="bg-white border border-edge rounded-card shadow-card p-6 sm:p-8"
-    >
+    <form onSubmit={handleSubmit} noValidate>
+
       {/* Name */}
       <div className="mb-6">
-        <label htmlFor="reviewer-name" className="block text-label font-semibold text-ink mb-2">
+        <label
+          htmlFor="reviewer-name"
+          className="block text-[0.6875rem] font-semibold text-ink uppercase tracking-[0.14em] mb-2.5"
+        >
           Your name
         </label>
         <input
@@ -66,7 +65,10 @@ export default function TestimonialForm({ brand, onSuccess }) {
 
       {/* Testimonial */}
       <div className="mb-8">
-        <label htmlFor="testimonial-message" className="block text-label font-semibold text-ink mb-2">
+        <label
+          htmlFor="testimonial-message"
+          className="block text-[0.6875rem] font-semibold text-ink uppercase tracking-[0.14em] mb-2.5"
+        >
           Your testimonial
         </label>
         <textarea
@@ -90,10 +92,11 @@ export default function TestimonialForm({ brand, onSuccess }) {
         type="submit"
         disabled={!canSubmit}
         aria-busy={loading}
-        className="w-full sm:w-auto bg-forest text-white font-semibold px-8 py-3 rounded-input cursor-pointer hover:bg-forest-dark transition-colors duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
+        className="w-full sm:w-auto bg-forest text-white text-[0.875rem] font-semibold px-8 py-3 rounded-input cursor-pointer hover:bg-forest-dark transition-colors duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
       >
         {loading ? 'Submitting…' : 'Submit testimonial'}
       </button>
+
     </form>
   )
 }
