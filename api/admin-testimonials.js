@@ -10,6 +10,11 @@ export default async function handler(req, res) {
   const expectedPassword = process.env.VITE_ADMIN_PASSWORD
 
   if (!incomingPassword || !expectedPassword || incomingPassword !== expectedPassword) {
+    console.error('Auth check failed:', {
+      hasIncoming: Boolean(incomingPassword),
+      hasExpected: Boolean(expectedPassword),
+      match: incomingPassword === expectedPassword,
+    })
     return res.status(401).json({ error: 'Unauthorized' })
   }
 
