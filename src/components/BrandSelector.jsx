@@ -17,13 +17,13 @@ const BRANDS = [
   {
     id: 'tbx-life-sciences',
     name: 'TBX Life Sciences',
-    descriptor: 'Senior-led pharmacovigilance & drug safety operations.',
+    descriptor: 'Expert pharmacovigilance and drug safety operations.',
   },
 ]
 
 export default function BrandSelector({ selected, onChange }) {
   return (
-    <div className="grid grid-cols-2 gap-2.5" role="group" aria-label="Select a brand">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5" role="group" aria-label="Select a brand">
       {BRANDS.map((brand) => {
         const isSelected = selected === brand.name
         return (

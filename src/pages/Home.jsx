@@ -39,13 +39,13 @@ export default function Home() {
             <p className="text-[0.6875rem] font-semibold text-gold uppercase tracking-[0.22em] mb-6">
               Testimonials
             </p>
-            <h1 className="font-serif text-[2.25rem] sm:text-[2.75rem] text-forest leading-[1.08] mb-5">
+            <h1 className="font-serif text-[1.875rem] sm:text-[2.25rem] lg:text-[2.75rem] text-forest leading-[1.08] mb-5">
               Your words<br />
               <span className="text-ink">mean everything.</span>
             </h1>
             <p className="text-[0.9rem] text-mid leading-[1.8] max-w-[19rem]">
-              Share your experience with one of Tobi's brands —
-              it takes two minutes and means the world.
+              Share your experience with one of Tobi's brands.
+              Two minutes that mean the world.
             </p>
           </div>
 
